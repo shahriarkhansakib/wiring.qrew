@@ -58,9 +58,9 @@
     } else if (pathPart === 'office-config' || pathPart.startsWith('office-config/')) {
       workspace = 'office-config';
       if (pathPart.startsWith('office-config/')) {
-        view = pathPart.replace('office-config/', '') || 'invoice-templates';
+        view = pathPart.replace('office-config/', '') || 'overview';
       } else {
-        view = 'invoice-templates';
+        view = 'overview';
       }
     } else if (pathPart === 'department' || pathPart.startsWith('department/')) {
       workspace = 'department';

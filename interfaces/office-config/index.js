@@ -46,6 +46,13 @@
         },
         navHtml: `
           <div class="nav-section">
+            <a class="nav-item ${view === 'overview' ? 'active' : ''}" href="#office-config/overview?tenantId=${tenantId}&officeId=${officeId}">
+              <span class="nav-icon">${QrewUI.getIcon('overview')}</span>
+              <span class="nav-label">Overview</span>
+            </a>
+
+            <div class="nav-divider"></div>
+
             <a class="nav-item ${view === 'invoice-templates' ? 'active' : ''}" href="#office-config/invoice-templates?tenantId=${tenantId}&officeId=${officeId}">
               <span class="nav-icon">${QrewUI.getIcon('invoice')}</span>
               <span class="nav-label">Invoice Templates</span>
@@ -68,9 +75,9 @@
           </div>
         `,
         footerHtml: `
-          <a class="footer-action-link" href="#office/overview?tenantId=${tenantId}&officeId=${officeId}" title="Back to Office Workspace" data-tooltip="Office Workspace">
+          <a class="footer-action-link" href="#platform/overview" title="Back to Platform Admin" data-tooltip="Platform Admin">
             <span class="footer-action-icon">${QrewUI.getIcon('chevronLeft')}</span>
-            <span class="footer-action-label">&larr; Office Workspace</span>
+            <span class="footer-action-label">&larr; Platform Admin</span>
           </a>
         `
       };
@@ -87,6 +94,8 @@
       }
 
       switch (view) {
+        case 'overview':
+          return Qrew.renderBlankTitledPage('Overview');
         case 'invoice-templates':
           if (Qrew.views['office-config'] && Qrew.views['office-config'].renderInvoiceTemplates) {
             return Qrew.views['office-config'].renderInvoiceTemplates(officeId, tenantId, ctx);
@@ -101,7 +110,7 @@
         case 'plans':
           return Qrew.renderBlankTitledPage('Plans and Entitlement');
         default:
-          return Qrew.renderBlankTitledPage('Invoice Templates');
+          return Qrew.renderBlankTitledPage('Overview');
       }
     }
   });
