@@ -263,6 +263,33 @@
     } else {
       if (document.body) document.body.classList.remove('density-compact');
     }
+
+    // 4. Update Theme Toggle Tooltips & Accessibility
+    const isDarkNow = document.documentElement.getAttribute('data-theme') === 'dark';
+    const toggleLabel = isDarkNow ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    document.querySelectorAll('#topbar-theme-toggle, #landing-theme-toggle, .topbar-theme-toggle, .landing-theme-toggle').forEach(el => {
+      el.setAttribute('title', toggleLabel);
+      el.setAttribute('aria-label', toggleLabel);
+    });
+  };
+
+  Qrew.shell.toggleTheme = () => {
+    const currentStored = localStorage.getItem('qrew_ui_theme');
+    let isDark = false;
+    if (currentStored === 'dark') {
+      isDark = true;
+    } else if (currentStored === 'light') {
+      isDark = false;
+    } else {
+      isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    const nextTheme = isDark ? 'light' : 'dark';
+    localStorage.setItem('qrew_ui_theme', nextTheme);
+    Qrew.shell.applyAppearanceSettings();
+    const radio = document.querySelector(`input[name="theme-choice"][value="${nextTheme}"]`);
+    if (radio) radio.checked = true;
+    window.dispatchEvent(new Event('storage'));
   };
 
   Qrew.shell.getPanelUserInfo = () => {
@@ -853,6 +880,17 @@
         }
       });
     };
+
+    // Global Theme Toggle Click Handler
+    document.addEventListener('click', (e) => {
+      const toggleBtn = e.target.closest('#topbar-theme-toggle, #landing-theme-toggle, .topbar-theme-toggle, .landing-theme-toggle');
+      if (toggleBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        Qrew.shell.toggleTheme();
+        return;
+      }
+    });
 
     // Close dropdowns & tree menus when clicking outside
     document.addEventListener('click', () => {

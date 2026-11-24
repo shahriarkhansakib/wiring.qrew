@@ -47,6 +47,11 @@
 
               <!-- Auth Buttons -->
               <div class="landing-auth-buttons">
+                <!-- Theme Toggle Button (Full Circle, beside and to the left of Sign In / Sign Up) -->
+                <button type="button" class="landing-theme-toggle" id="landing-theme-toggle" title="Toggle Theme (Light / Dark)" aria-label="Toggle Theme">
+                  <span class="theme-toggle-icon-sun" aria-hidden="true">${QrewUI.getIcon('sun')}</span>
+                  <span class="theme-toggle-icon-moon" aria-hidden="true">${QrewUI.getIcon('moon')}</span>
+                </button>
                 <button type="button" class="btn btn-secondary landing-auth-btn landing-signin-btn">Sign In</button>
                 <button type="button" class="btn btn-primary landing-auth-btn landing-signup-btn">Sign Up</button>
               </div>

@@ -870,6 +870,69 @@ body.profile-mode .topbar-profile-brand {
   gap: 8px;
 }
 
+/* Topbar Theme Toggle Button - Dashed Circle */
+.topbar-theme-toggle {
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-border);
+  color: var(--color-text-primary);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.topbar-theme-toggle:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--panel-accent, var(--color-accent));
+  border-color: var(--panel-accent, var(--color-accent));
+  transform: translateY(-1px);
+}
+
+.topbar-theme-toggle:active {
+  transform: translateY(1px);
+}
+
+.topbar-theme-toggle:focus-visible {
+  outline: 2px solid var(--panel-accent, var(--color-accent));
+  outline-offset: 2px;
+}
+
+/* Theme Toggle Icons (shared across topbar & landing buttons) */
+.theme-toggle-icon-sun {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.theme-toggle-icon-moon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .theme-toggle-icon-sun {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #F59E0B;
+}
+
+[data-theme="dark"] .theme-toggle-icon-moon {
+  display: none;
+}
+
 .icon-btn {
   background: transparent;
   border: 1px solid transparent;
