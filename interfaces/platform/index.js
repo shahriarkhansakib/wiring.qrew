@@ -58,7 +58,7 @@
 
           <a class="nav-item ${view === 'tenants' ? 'active' : ''}" href="#platform/tenants">
             <span class="nav-icon">${QrewUI.getIcon('tenants')}</span>
-            <span class="nav-label">Tenants</span>
+            <span class="nav-label">All Tenants</span>
           </a>
           <a class="nav-item ${view === 'archive' ? 'active' : ''}" href="#platform/archive">
             <span class="nav-icon">${QrewUI.getIcon('archive')}</span>

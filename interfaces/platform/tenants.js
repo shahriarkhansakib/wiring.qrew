@@ -606,7 +606,7 @@
     Qrew.dom.mainContent.innerHTML = `
       <div class="page-header" style="margin-bottom:20px;">
         <div class="page-title-group">
-          <h1 class="page-title">Tenant Management</h1>
+          <h1 class="page-title">All Tenants</h1>
         </div>
         <div class="page-actions" style="display:flex;align-items:center;gap:10px;">
           <a href="#platform/archive" class="btn btn-secondary" id="btn-view-archive" title="View Suspended & Archived Organizations" style="display:inline-flex;align-items:center;gap:6px;">
