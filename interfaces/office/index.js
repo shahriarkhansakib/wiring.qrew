@@ -89,6 +89,9 @@
         case 'files':
           return Qrew.renderBlankTitledPage('Files');
         case 'financials':
+          if (Qrew.views.office && Qrew.views.office.renderFinancials) {
+            return Qrew.views.office.renderFinancials(Qrew.state.currentOfficeId, Qrew.state.currentTenantId);
+          }
           return Qrew.renderBlankTitledPage('Financials');
         case 'staffs':
         case 'staff':

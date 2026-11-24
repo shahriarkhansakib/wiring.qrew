@@ -680,6 +680,372 @@ const DEFAULT_DATA = {
         equation: '= SEC_T11_TOTAL'
       }
     }
+  ],
+  officeInvoices: [
+    {
+      id: 'inv_101',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-084',
+      clientName: 'Apex Shipping Lines Ltd.',
+      clientCode: 'APEX-SHP',
+      vessel: 'MV Banglar Samriddhi',
+      voyageNo: 'V-2026-08',
+      issueDate: '2026-11-18',
+      dueDate: '2026-12-18',
+      amount: 48500.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Paid',
+      paidDate: '2026-11-22',
+      items: [
+        { name: 'Port Dues & Berthing Charges (NCT Berth 4)', amount: 24500.00 },
+        { name: 'Pilotage & Harbor Tug Assistance', amount: 12800.00 },
+        { name: 'Agency Operational Fee & Customs Clearance', amount: 11200.00 }
+      ],
+      notes: 'Disbursement settled via SCB wire transfer ref #88214.'
+    },
+    {
+      id: 'inv_102',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-085',
+      clientName: 'Maersk Bangladesh Ltd.',
+      clientCode: 'MAERSK-BD',
+      vessel: 'MV Northern Diamond',
+      voyageNo: 'ND-441',
+      issueDate: '2026-11-20',
+      dueDate: '2026-12-20',
+      amount: 36200.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Pending',
+      items: [
+        { name: 'Container Terminal Yard Storage & Handling', amount: 18500.00 },
+        { name: 'Gantry Crane Discharge Operations', amount: 11500.00 },
+        { name: 'Documentation & Manifest Filing', amount: 6200.00 }
+      ],
+      notes: 'Pending client accounts payable approval cycle.'
+    },
+    {
+      id: 'inv_103',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-086',
+      clientName: 'Hapag-Lloyd Maritime',
+      clientCode: 'HL-MAR',
+      vessel: 'MV Ocean Voyager',
+      voyageNo: 'HL-882',
+      issueDate: '2026-10-15',
+      dueDate: '2026-11-15',
+      amount: 14850.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Overdue',
+      items: [
+        { name: 'Emergency Harbor Towage Assistance', amount: 8850.00 },
+        { name: 'Vessel Berthing Line Handlers & Mooring', amount: 6000.00 }
+      ],
+      notes: 'Overdue by 9 days. First reminder dispatched on Nov 16.'
+    },
+    {
+      id: 'inv_104',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-087',
+      clientName: 'Cosco Shipping Lines',
+      clientCode: 'COSCO-BD',
+      vessel: 'MV Golden Fortune',
+      voyageNo: 'CS-109',
+      issueDate: '2026-11-22',
+      dueDate: '2026-12-22',
+      amount: 28900.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Paid',
+      paidDate: '2026-11-23',
+      items: [
+        { name: 'Bulk Cargo Stevedoring & Wharfage Access', amount: 16500.00 },
+        { name: 'Port Authority Environmental Levy & Security', amount: 7400.00 },
+        { name: 'Maritime Clearance & NOC Expediting', amount: 5000.00 }
+      ],
+      notes: 'Paid in full via HSBC swift transfer.'
+    },
+    {
+      id: 'inv_105',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-088',
+      clientName: 'Evergreen Marine Corp',
+      clientCode: 'EMC-LINE',
+      vessel: 'MV Green Horizon',
+      voyageNo: 'EM-512',
+      issueDate: '2026-11-23',
+      dueDate: '2026-12-23',
+      amount: 14400.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Draft',
+      items: [
+        { name: 'Proforma Bunker Supply & Fresh Water Delivery', amount: 9800.00 },
+        { name: 'Crew Change & Immigration Logistics', amount: 4600.00 }
+      ],
+      notes: 'Draft proforma undergoing master verification.'
+    },
+    {
+      id: 'inv_106',
+      officeId: 'off_mgl_port',
+      tenantId: 'ten_sst',
+      invoiceNo: 'INV-2026-089',
+      clientName: 'Apex Shipping Lines Ltd.',
+      clientCode: 'APEX-SHP',
+      vessel: 'MV Meghna Star',
+      voyageNo: 'MS-202',
+      issueDate: '2026-11-19',
+      dueDate: '2026-12-19',
+      amount: 21500.00,
+      currency: 'USD',
+      currencySymbol: '$',
+      status: 'Paid',
+      paidDate: '2026-11-21',
+      items: [
+        { name: 'Mongla Fairway Anchorage & Pilotage', amount: 14000.00 },
+        { name: 'Inland Lighterage Coordination', amount: 7500.00 }
+      ],
+      notes: 'Cleared through Mongla Port Accounts.'
+    }
+  ],
+  officeTransactions: [
+    {
+      id: 'txn_101',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-23',
+      reference: 'TXN-88219',
+      type: 'Credit',
+      category: 'Client Settlement',
+      description: 'Cosco Shipping settlement for INV-2026-087',
+      amount: 28900.00,
+      currency: 'USD',
+      method: 'SWIFT Wire',
+      status: 'Completed'
+    },
+    {
+      id: 'txn_102',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-22',
+      reference: 'TXN-88214',
+      type: 'Credit',
+      category: 'Client Settlement',
+      description: 'Apex Shipping settlement for INV-2026-084',
+      amount: 48500.00,
+      currency: 'USD',
+      method: 'Bank Transfer',
+      status: 'Completed'
+    },
+    {
+      id: 'txn_103',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-21',
+      reference: 'TXN-88190',
+      type: 'Debit',
+      category: 'Port Authority Tariff',
+      description: 'Chittagong Port Authority (CPA) Berthing & Pilotage Disbursal',
+      amount: 14200.00,
+      currency: 'USD',
+      method: 'Bank Draft',
+      status: 'Completed'
+    },
+    {
+      id: 'txn_104',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-19',
+      reference: 'TXN-88155',
+      type: 'Debit',
+      category: 'Towage & Marine Service',
+      description: 'Harbor Tug Assistance Disbursal for NCT Berth 4',
+      amount: 5600.00,
+      currency: 'USD',
+      method: 'Pay Order',
+      status: 'Completed'
+    },
+    {
+      id: 'txn_105',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-17',
+      reference: 'TXN-88112',
+      type: 'Debit',
+      category: 'Stevedoring & Equipment',
+      description: 'Heavy crane & container yard equipment rental fee',
+      amount: 3800.00,
+      currency: 'USD',
+      method: 'Electronic Transfer',
+      status: 'Completed'
+    },
+    {
+      id: 'txn_106',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      date: '2026-11-14',
+      reference: 'TXN-88091',
+      type: 'Debit',
+      category: 'Customs & Regulatory',
+      description: 'Customs regulatory document processing and compliance duty',
+      amount: 1950.00,
+      currency: 'USD',
+      method: 'Treasury Challan',
+      status: 'Completed'
+    }
+  ],
+  officeExpenses: [
+    {
+      id: 'exp_1',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      fileProject: 'PRJ-CTG-0042 (MV Meghna Harmony)',
+      spentBy: 'Rafiqul Islam',
+      category: 'Port Authority Tariffs',
+      description: 'Emergency berthing line handlers overtime fee at NCT Berth 4',
+      date: '2026-11-22',
+      amount: 1250.00,
+      currency: 'USD',
+      wallet: 'Operations Petty Cash'
+    },
+    {
+      id: 'exp_2',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      fileProject: 'PRJ-CTG-0041 (MV Northern Diamond)',
+      spentBy: 'Jack Rahman',
+      category: 'Logistics & Transport',
+      description: 'Container yard transfer shuttle and pilot escort van rental',
+      date: '2026-11-20',
+      amount: 480.00,
+      currency: 'USD',
+      wallet: 'Operations Petty Cash'
+    },
+    {
+      id: 'exp_3',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      fileProject: 'PRJ-CTG-0039 (MV Ocean Voyager)',
+      spentBy: 'Nusrat Jahan',
+      category: 'Customs & Regulatory',
+      description: 'Dangerous goods documentation clearance stamp duty & filing fees',
+      date: '2026-11-18',
+      amount: 650.00,
+      currency: 'USD',
+      wallet: 'Port Authority Escrow'
+    },
+    {
+      id: 'exp_4',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      fileProject: 'PRJ-CTG-0038 (MV Banglar Samriddhi)',
+      spentBy: 'Jack Rahman',
+      category: 'Towage & Harbor Pilotage',
+      description: 'Harbor tugboat fuel surcharge dispatch reimbursement',
+      date: '2026-11-15',
+      amount: 2200.00,
+      currency: 'USD',
+      wallet: 'Towage & Berthing Reserve'
+    },
+    {
+      id: 'exp_5',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      fileProject: 'General Operations',
+      spentBy: 'Rafiqul Islam',
+      category: 'Office & Facilities',
+      description: 'Port communication VHF radio maintenance and dock batteries',
+      date: '2026-11-12',
+      amount: 320.00,
+      currency: 'USD',
+      wallet: 'Operations Petty Cash'
+    }
+  ],
+  officeRequisitions: [
+    {
+      id: 'req_1',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      requisitionNo: 'REQ-2026-031',
+      requestedBy: 'Jack Rahman',
+      fileProject: 'PRJ-CTG-0042 (MV Meghna Harmony)',
+      category: 'Port Operations',
+      amount: 3500.00,
+      purpose: 'Harbor tugboat advance fund for upcoming Maersk container call',
+      date: '2026-11-23',
+      status: 'Pending',
+      wallet: 'Towage & Berthing Reserve'
+    },
+    {
+      id: 'req_2',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      requisitionNo: 'REQ-2026-030',
+      requestedBy: 'Nusrat Jahan',
+      fileProject: 'PRJ-CTG-0039 (MV Ocean Voyager)',
+      category: 'Customs Clearance',
+      amount: 1800.00,
+      purpose: 'Advance treasury challan deposit for customs manifest filing',
+      date: '2026-11-21',
+      status: 'Approved',
+      wallet: 'Port Authority Escrow'
+    },
+    {
+      id: 'req_3',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      requisitionNo: 'REQ-2026-029',
+      requestedBy: 'Rafiqul Islam',
+      fileProject: 'General Operations',
+      category: 'Petty Cash',
+      amount: 2000.00,
+      purpose: 'Monthly office operational petty cash replenishment',
+      date: '2026-11-15',
+      status: 'Disbursed',
+      wallet: 'Operations Petty Cash'
+    }
+  ],
+  officeWallets: [
+    {
+      id: 'wlt_1',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      name: 'Operations Petty Cash',
+      balance: 4250.00,
+      monthlyLimit: 10000.00,
+      spentThisMonth: 2050.00,
+      color: '#10B981',
+      icon: 'dollar'
+    },
+    {
+      id: 'wlt_2',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      name: 'Port Authority Escrow',
+      balance: 18500.00,
+      monthlyLimit: 50000.00,
+      spentThisMonth: 14850.00,
+      color: '#3B82F6',
+      icon: 'shield'
+    },
+    {
+      id: 'wlt_3',
+      officeId: 'off_ctg_port',
+      tenantId: 'ten_sst',
+      name: 'Towage & Berthing Reserve',
+      balance: 9400.00,
+      monthlyLimit: 25000.00,
+      spentThisMonth: 7800.00,
+      color: '#8B5CF6',
+      icon: 'activity'
+    }
   ]
 };
 
@@ -711,6 +1077,11 @@ class DataStore {
         if (!parsed.operationalFiles || parsed.operationalFiles.length === 0) parsed.operationalFiles = JSON.parse(JSON.stringify(DEFAULT_DATA.operationalFiles || []));
         if (!parsed.premadeDeliverables || parsed.premadeDeliverables.length === 0) parsed.premadeDeliverables = JSON.parse(JSON.stringify(DEFAULT_DATA.premadeDeliverables || []));
         if (!parsed.invoiceTemplates || parsed.invoiceTemplates.length === 0) parsed.invoiceTemplates = JSON.parse(JSON.stringify(DEFAULT_DATA.invoiceTemplates || []));
+        if (!parsed.officeInvoices || parsed.officeInvoices.length === 0) parsed.officeInvoices = JSON.parse(JSON.stringify(DEFAULT_DATA.officeInvoices || []));
+        if (!parsed.officeTransactions || parsed.officeTransactions.length === 0) parsed.officeTransactions = JSON.parse(JSON.stringify(DEFAULT_DATA.officeTransactions || []));
+        if (!parsed.officeExpenses || parsed.officeExpenses.length === 0) parsed.officeExpenses = JSON.parse(JSON.stringify(DEFAULT_DATA.officeExpenses || []));
+        if (!parsed.officeRequisitions || parsed.officeRequisitions.length === 0) parsed.officeRequisitions = JSON.parse(JSON.stringify(DEFAULT_DATA.officeRequisitions || []));
+        if (!parsed.officeWallets || parsed.officeWallets.length === 0) parsed.officeWallets = JSON.parse(JSON.stringify(DEFAULT_DATA.officeWallets || []));
         return parsed;
       }
     } catch (e) {
@@ -2019,6 +2390,354 @@ class DataStore {
       `Set invoice template ${id} as default for office ${officeId}`
     );
     this.save();
+  }
+
+  // Office Financial Invoices
+  getOfficeInvoices(officeId = null) {
+    if (!this.data.officeInvoices) this.data.officeInvoices = [];
+    let list = this.data.officeInvoices;
+    if (officeId) {
+      list = list.filter(i => i.officeId === officeId);
+    }
+    return JSON.parse(JSON.stringify(list));
+  }
+
+  getOfficeInvoiceById(id) {
+    if (!this.data.officeInvoices) this.data.officeInvoices = [];
+    const found = this.data.officeInvoices.find(i => i.id === id);
+    return found ? JSON.parse(JSON.stringify(found)) : null;
+  }
+
+  createOfficeInvoice(officeId, data) {
+    if (!this.data.officeInvoices) this.data.officeInvoices = [];
+    const office = this.getOfficeById(officeId);
+    const tenantId = office ? office.tenantId : 'ten_sst';
+    const count = this.data.officeInvoices.length + 1;
+    const invoiceNo = data.invoiceNo || `INV-2026-${String(count).padStart(3, '0')}`;
+    const id = 'inv_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4);
+
+    const newInvoice = {
+      id,
+      officeId,
+      tenantId,
+      invoiceNo,
+      clientName: data.clientName || 'General Shipping Client',
+      clientCode: data.clientCode || 'GEN-CLT',
+      vessel: data.vessel || 'Vessel Port Call',
+      voyageNo: data.voyageNo || 'V-2026',
+      issueDate: data.issueDate || new Date().toISOString().split('T')[0],
+      dueDate: data.dueDate || new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0],
+      amount: parseFloat(data.amount) || 0,
+      currency: data.currency || 'USD',
+      currencySymbol: data.currencySymbol || '$',
+      status: data.status || 'Pending',
+      items: data.items && data.items.length ? data.items : [
+        { name: data.description || 'Maritime Operational Services', amount: parseFloat(data.amount) || 0 }
+      ],
+      notes: data.notes || 'Created via Financials Hub.'
+    };
+
+    this.data.officeInvoices.unshift(newInvoice);
+    this.addAuditLog(
+      'CREATE_INVOICE',
+      'Office Invoice',
+      newInvoice.id,
+      `Issued invoice "${newInvoice.invoiceNo}" for ${newInvoice.clientName} (${newInvoice.currencySymbol}${newInvoice.amount.toLocaleString()})`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(newInvoice));
+  }
+
+  updateOfficeInvoiceStatus(id, status, paidDate = null) {
+    if (!this.data.officeInvoices) this.data.officeInvoices = [];
+    const idx = this.data.officeInvoices.findIndex(i => i.id === id);
+    if (idx === -1) throw new Error(`Invoice ${id} not found.`);
+
+    const existing = this.data.officeInvoices[idx];
+    existing.status = status;
+    if (status === 'Paid') {
+      existing.paidDate = paidDate || new Date().toISOString().split('T')[0];
+    }
+    this.addAuditLog(
+      'UPDATE_INVOICE_STATUS',
+      'Office Invoice',
+      id,
+      `Updated invoice "${existing.invoiceNo}" status to ${status}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(existing));
+  }
+
+  deleteOfficeInvoice(id) {
+    if (!this.data.officeInvoices) this.data.officeInvoices = [];
+    const idx = this.data.officeInvoices.findIndex(i => i.id === id);
+    if (idx === -1) return false;
+    const removed = this.data.officeInvoices.splice(idx, 1)[0];
+    this.addAuditLog(
+      'DELETE_INVOICE',
+      'Office Invoice',
+      id,
+      `Deleted invoice "${removed.invoiceNo}"`
+    );
+    this.save();
+    return true;
+  }
+
+  // Office Financial Transactions
+  getOfficeTransactions(officeId = null) {
+    if (!this.data.officeTransactions) this.data.officeTransactions = [];
+    let list = this.data.officeTransactions;
+    if (officeId) {
+      list = list.filter(t => t.officeId === officeId);
+    }
+    return JSON.parse(JSON.stringify(list));
+  }
+
+  createOfficeTransaction(officeId, data) {
+    if (!this.data.officeTransactions) this.data.officeTransactions = [];
+    const office = this.getOfficeById(officeId);
+    const tenantId = office ? office.tenantId : 'ten_sst';
+    const id = 'txn_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4);
+    const count = this.data.officeTransactions.length + 1;
+    const reference = data.reference || `TXN-88${String(count).padStart(3, '0')}`;
+
+    const newTxn = {
+      id,
+      officeId,
+      tenantId,
+      date: data.date || new Date().toISOString().split('T')[0],
+      reference,
+      type: data.type || 'Credit', // Credit or Debit
+      category: data.category || 'General Operational',
+      description: data.description || 'Financial transaction record',
+      amount: parseFloat(data.amount) || 0,
+      currency: data.currency || 'USD',
+      method: data.method || 'Wire Transfer',
+      status: 'Completed'
+    };
+
+    this.data.officeTransactions.unshift(newTxn);
+    this.addAuditLog(
+      'CREATE_TRANSACTION',
+      'Financial Transaction',
+      newTxn.id,
+      `Logged ${newTxn.type} of $${newTxn.amount.toLocaleString()} (${newTxn.category}) - Ref: ${newTxn.reference}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(newTxn));
+  }
+
+  // Office Expenses
+  getOfficeExpenses(officeId = null) {
+    if (!this.data.officeExpenses) this.data.officeExpenses = [];
+    let list = this.data.officeExpenses;
+    if (officeId) {
+      list = list.filter(e => e.officeId === officeId);
+    }
+    return JSON.parse(JSON.stringify(list));
+  }
+
+  createOfficeExpense(officeId, data) {
+    if (!this.data.officeExpenses) this.data.officeExpenses = [];
+    const office = this.getOfficeById(officeId);
+    const tenantId = office ? office.tenantId : 'ten_sst';
+    const id = 'exp_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4);
+
+    const newExpense = {
+      id,
+      officeId,
+      tenantId,
+      fileProject: data.fileProject || 'General Operations',
+      spentBy: data.spentBy || 'Office Staff',
+      category: data.category || 'General Operational',
+      description: data.description || 'Disbursement expense',
+      date: data.date || new Date().toISOString().split('T')[0],
+      amount: parseFloat(data.amount) || 0,
+      currency: data.currency || 'USD',
+      wallet: data.wallet || 'Operations Petty Cash'
+    };
+
+    this.data.officeExpenses.unshift(newExpense);
+
+    // Also deduct or record in transactions ledger
+    this.createOfficeTransaction(officeId, {
+      type: 'Debit',
+      amount: newExpense.amount,
+      category: newExpense.category,
+      method: 'Expense Voucher',
+      description: `Expense: ${newExpense.description} (${newExpense.fileProject})`
+    });
+
+    this.addAuditLog(
+      'LOG_EXPENSE',
+      'Office Expense',
+      newExpense.id,
+      `Logged expense of $${newExpense.amount.toLocaleString()} by ${newExpense.spentBy} for ${newExpense.fileProject}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(newExpense));
+  }
+
+  deleteOfficeExpense(id) {
+    if (!this.data.officeExpenses) this.data.officeExpenses = [];
+    const idx = this.data.officeExpenses.findIndex(e => e.id === id);
+    if (idx === -1) return false;
+    const removed = this.data.officeExpenses.splice(idx, 1)[0];
+    this.addAuditLog(
+      'DELETE_EXPENSE',
+      'Office Expense',
+      id,
+      `Deleted expense of $${removed.amount} (${removed.description})`
+    );
+    this.save();
+    return true;
+  }
+
+  // Office Requisitions
+  getOfficeRequisitions(officeId = null) {
+    if (!this.data.officeRequisitions) this.data.officeRequisitions = [];
+    let list = this.data.officeRequisitions;
+    if (officeId) {
+      list = list.filter(r => r.officeId === officeId);
+    }
+    return JSON.parse(JSON.stringify(list));
+  }
+
+  createOfficeRequisition(officeId, data) {
+    if (!this.data.officeRequisitions) this.data.officeRequisitions = [];
+    const office = this.getOfficeById(officeId);
+    const tenantId = office ? office.tenantId : 'ten_sst';
+    const id = 'req_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4);
+    const count = this.data.officeRequisitions.length + 1;
+    const requisitionNo = data.requisitionNo || `REQ-2026-${String(count).padStart(3, '0')}`;
+
+    const newReq = {
+      id,
+      officeId,
+      tenantId,
+      requisitionNo,
+      requestedBy: data.requestedBy || 'Office Staff',
+      fileProject: data.fileProject || 'General Operations',
+      category: data.category || 'General Operational',
+      amount: parseFloat(data.amount) || 0,
+      purpose: data.purpose || 'Operational fund requisition',
+      date: data.date || new Date().toISOString().split('T')[0],
+      status: 'Pending',
+      wallet: data.wallet || 'Operations Petty Cash'
+    };
+
+    this.data.officeRequisitions.unshift(newReq);
+    this.addAuditLog(
+      'CREATE_REQUISITION',
+      'Fund Requisition',
+      newReq.id,
+      `Created requisition "${newReq.requisitionNo}" for $${newReq.amount.toLocaleString()} by ${newReq.requestedBy}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(newReq));
+  }
+
+  disburseOfficeRequisition(id, disbursedAmount, walletName, remarks = '') {
+    if (!this.data.officeRequisitions) this.data.officeRequisitions = [];
+    const idx = this.data.officeRequisitions.findIndex(r => r.id === id);
+    if (idx === -1) throw new Error(`Requisition ${id} not found.`);
+
+    const req = this.data.officeRequisitions[idx];
+    const finalAmount = parseFloat(disbursedAmount) || req.amount;
+    const originalAmount = req.amount;
+    const wallet = walletName || req.wallet || 'Operations Petty Cash';
+
+    req.status = 'Disbursed';
+    req.originalAmount = originalAmount;
+    req.disbursedAmount = finalAmount;
+    req.amount = finalAmount; // Overwritten amount
+    req.wallet = wallet;
+    req.disbursedAt = new Date().toISOString().split('T')[0];
+    req.disbursementRemarks = remarks;
+
+    // Deduct from wallet balance if wallet exists
+    if (this.data.officeWallets) {
+      const wlt = this.data.officeWallets.find(w => w.officeId === req.officeId && w.name === wallet);
+      if (wlt) {
+        wlt.balance = Math.max(0, (parseFloat(wlt.balance) || 0) - finalAmount);
+        wlt.spentThisMonth = (parseFloat(wlt.spentThisMonth) || 0) + finalAmount;
+      }
+    }
+
+    // Record Debit in officeTransactions
+    this.createOfficeTransaction(req.officeId, {
+      type: 'Debit',
+      amount: finalAmount,
+      category: req.category,
+      method: 'Fund Disbursal',
+      description: `Disbursed for ${req.requisitionNo} (${req.purpose}) [File: ${req.fileProject || 'N/A'}]`
+    });
+
+    const overrideNotice = (finalAmount !== originalAmount) ? ` (Overwritten from $${originalAmount.toLocaleString()} to $${finalAmount.toLocaleString()})` : '';
+    this.addAuditLog(
+      'DISBURSE_REQUISITION',
+      'Fund Requisition',
+      id,
+      `Approved and disbursed $${finalAmount.toLocaleString()} for ${req.requisitionNo} via ${wallet}${overrideNotice}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(req));
+  }
+
+  rejectOfficeRequisition(id, reason = '') {
+    if (!this.data.officeRequisitions) this.data.officeRequisitions = [];
+    const idx = this.data.officeRequisitions.findIndex(r => r.id === id);
+    if (idx === -1) return null;
+    this.data.officeRequisitions[idx].status = 'Rejected';
+    this.data.officeRequisitions[idx].rejectionReason = reason;
+    this.addAuditLog(
+      'REJECT_REQUISITION',
+      'Fund Requisition',
+      id,
+      `Rejected requisition ${this.data.officeRequisitions[idx].requisitionNo}. Reason: ${reason || 'Administrative review'}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(this.data.officeRequisitions[idx]));
+  }
+
+  updateOfficeRequisitionStatus(id, status) {
+    if (!this.data.officeRequisitions) this.data.officeRequisitions = [];
+    const idx = this.data.officeRequisitions.findIndex(r => r.id === id);
+    if (idx === -1) return null;
+    this.data.officeRequisitions[idx].status = status;
+    this.addAuditLog(
+      'UPDATE_REQUISITION',
+      'Fund Requisition',
+      id,
+      `Updated requisition "${this.data.officeRequisitions[idx].requisitionNo}" status to ${status}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(this.data.officeRequisitions[idx]));
+  }
+
+  // Office Wallets
+  getOfficeWallets(officeId = null) {
+    if (!this.data.officeWallets) this.data.officeWallets = [];
+    let list = this.data.officeWallets;
+    if (officeId) {
+      list = list.filter(w => w.officeId === officeId);
+    }
+    return JSON.parse(JSON.stringify(list));
+  }
+
+  topUpOfficeWallet(id, amount) {
+    if (!this.data.officeWallets) return null;
+    const found = this.data.officeWallets.find(w => w.id === id);
+    if (!found) return null;
+    found.balance = (parseFloat(found.balance) || 0) + parseFloat(amount);
+    this.addAuditLog(
+      'TOPUP_WALLET',
+      'Office Wallet',
+      id,
+      `Added $${amount} to wallet "${found.name}". New balance: $${found.balance}`
+    );
+    this.save();
+    return JSON.parse(JSON.stringify(found));
   }
 }
 
