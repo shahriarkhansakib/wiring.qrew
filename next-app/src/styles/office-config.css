@@ -1,0 +1,3433 @@
+/* ==========================================================================
+   Office Configuration: Invoice Templates & Token-Driven Spreadsheet Studio
+   Theme: Light, Warm Cream / Oatmeal / Espresso with Office-Config Purple Accent
+   Reference: Reusable Document Indexing, File Details Header, Docked Token Pool
+   ========================================================================== */
+
+body[data-workspace="office-config"],
+body.ws-office-config {
+  --panel-accent: #78618A;
+  --panel-accent-light: #F0EBF4;
+}
+
+[data-theme="dark"] body[data-workspace="office-config"],
+[data-theme="dark"] body.ws-office-config {
+  --panel-accent: #A78BFA;
+  --panel-accent-light: rgba(167, 139, 250, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   1. Template Directory View (Table Layout matching Reference Image 1)
+   -------------------------------------------------------------------------- */
+
+.tpl-directory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tpl-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tpl-branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: var(--panel-accent-light);
+  color: var(--panel-accent);
+  border: 1px solid rgba(120, 97, 138, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tpl-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tpl-search-box {
+  position: relative;
+  min-width: 280px;
+  flex: 1;
+  max-width: 440px;
+}
+
+.tpl-search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.tpl-search-input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 13.5px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tpl-search-input:focus {
+  outline: none;
+  border-color: var(--panel-accent);
+  box-shadow: 0 0 0 3px rgba(120, 97, 138, 0.12);
+}
+
+/* ==========================================================================
+   Reusable Segmented Pills Control (Sliding GPU Glider & Zero Layout Shift)
+   ========================================================================== */
+
+.segmented-pills-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  isolation: isolate;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.segmented-pills-glider {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  width: 0;
+  background: var(--color-surface-white);
+  border-radius: calc(var(--radius-md) - 2px);
+  box-shadow: 0 1px 3px rgba(31, 29, 26, 0.08), 0 1px 2px rgba(31, 29, 26, 0.04);
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, width;
+}
+
+.segmented-pill-btn {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  line-height: 1.25;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  border-radius: calc(var(--radius-md) - 2px);
+  transition: color 180ms ease;
+  outline: none;
+}
+
+.segmented-pill-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.segmented-pill-btn.active {
+  color: var(--panel-accent);
+}
+
+/* Backward-compatible alias */
+.tpl-status-pills {
+  display: inline-flex;
+}
+
+.tpl-view-toggle {
+  display: inline-flex;
+  background: var(--color-surface);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  gap: 2px;
+}
+
+.tpl-view-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--transition-fast);
+}
+
+.tpl-view-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.tpl-view-btn.active {
+  background: var(--color-surface-white);
+  color: var(--panel-accent);
+  box-shadow: var(--shadow-xs);
+}
+
+/* --------------------------------------------------------------------------
+   Cards Grid Layout for Invoice Templates (Clean, Compact, Minimal)
+   -------------------------------------------------------------------------- */
+
+.tpl-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.tpl-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  position: relative;
+}
+
+.tpl-card:hover {
+  border-color: rgba(120, 97, 138, 0.45);
+  box-shadow: 0 3px 12px rgba(31, 29, 26, 0.06);
+  transform: translateY(-2px);
+}
+
+.tpl-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+
+.tpl-status-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tpl-status-pill.status-active {
+  background: rgba(35, 95, 66, 0.1);
+  color: #235F42;
+  border: 1px solid rgba(35, 95, 66, 0.25);
+}
+
+.tpl-status-pill.status-active .status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #235F42;
+}
+
+.tpl-status-pill.status-draft {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.tpl-status-pill.status-draft .status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+}
+
+.tpl-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.tpl-card-desc {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin: 0 0 14px 0;
+  line-height: 1.4;
+  min-height: 24px;
+}
+
+.tpl-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 12px;
+  margin-top: auto;
+  gap: 8px;
+}
+
+.tpl-card-updated {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.tpl-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Interactive Compact Create Card */
+.tpl-card-new {
+  border: 1.5px dashed var(--color-border);
+  background: rgba(239, 236, 230, 0.35);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 140px;
+}
+
+.tpl-card-new:hover {
+  border-color: var(--panel-accent);
+  background: var(--panel-accent-light);
+  transform: translateY(-2px);
+}
+
+.tpl-card-new-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 14px;
+  gap: 6px;
+}
+
+.tpl-new-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--panel-accent);
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.tpl-new-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.tpl-new-desc {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 220px;
+  line-height: 1.35;
+}
+
+/* Directory Table */
+.tpl-table-wrap {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  box-shadow: var(--shadow-xs);
+}
+
+.tpl-directory-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tpl-directory-table th {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 18px;
+  border-bottom: 1.5px solid var(--color-border);
+  border-top: none;
+  white-space: nowrap;
+}
+
+.tpl-directory-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: middle;
+  font-size: 13.5px;
+  color: var(--color-text-primary);
+  transition: background var(--transition-fast);
+}
+
+.tpl-directory-table tr:hover td {
+  background: rgba(239, 236, 230, 0.45);
+}
+
+.tpl-directory-table tr:last-child td {
+  border-bottom: none;
+}
+
+.tpl-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tpl-name-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.tpl-name-title:hover {
+  color: var(--panel-accent);
+}
+
+/* Cell Elements: Clean typography, no extra background, borders, or rounded corners */
+.cell-type-text,
+.badge-tpl-type {
+  display: block;
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cell-type-text.type-standard,
+.badge-tpl-type.type-standard {
+  color: #235F42;
+}
+
+.cell-type-text.type-custom,
+.badge-tpl-type.type-custom {
+  color: var(--panel-accent);
+}
+
+.cell-index-text,
+.tpl-indexing-pill {
+  display: block;
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.cell-currency-text,
+.tpl-currency-tag {
+  display: block;
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.tpl-desc-cell {
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+.tpl-tag-standard {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: rgba(31, 29, 26, 0.06);
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tpl-actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Icon Action Buttons (Only 2 icon buttons: edit, archive in Active tab) */
+.icon-btn.btn-action-edit,
+.icon-btn.btn-action-archive,
+.icon-btn.btn-action-restore,
+.icon-btn.btn-action-delete {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-white);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.icon-btn.btn-action-edit:hover {
+  color: var(--panel-accent);
+  border-color: var(--panel-accent);
+  background: var(--panel-accent-light);
+}
+
+.icon-btn.btn-action-archive:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: rgba(158, 83, 52, 0.08);
+}
+
+.icon-btn.btn-action-restore:hover {
+  color: #235F42;
+  border-color: #235F42;
+  background: rgba(35, 95, 66, 0.08);
+}
+
+.icon-btn.btn-action-delete:hover {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  background: rgba(184, 50, 50, 0.08);
+}
+
+.btn-generate-invoice {
+  background: #235F42;
+  color: #FFFFFF;
+  border: 1px solid #1B4B34;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-generate-invoice:hover {
+  background: #1B4B34;
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-tpl-builder {
+  background: var(--color-surface-white);
+  color: var(--panel-accent);
+  border: 1.5px solid var(--panel-accent);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-tpl-builder:hover {
+  background: var(--panel-accent-light);
+}
+
+/* --------------------------------------------------------------------------
+   2. Template Designer Studio: 2-Row Edge-to-Edge Studio & Retractable Sidebar
+   -------------------------------------------------------------------------- */
+
+/* Studio Mode: Flush Edge-to-Edge Container (Zero Outer Padding) */
+.content-area.studio-mode,
+#main-content.content-area.studio-mode {
+  padding: 0 !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  height: calc(100vh - var(--topbar-height)) !important;
+  overflow: hidden !important;
+}
+
+.studio-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* Row 1: Compact Single-Line Header (~48px) */
+.studio-header {
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 0 0;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.studio-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+}
+
+.designer-back-arrow {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.designer-back-arrow:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.designer-back-arrow:active {
+  background-color: rgba(31, 29, 26, 0.08);
+}
+
+.designer-back-arrow:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.designer-title-input {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  max-width: 480px;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.designer-title-input:hover,
+.designer-title-input:focus {
+  background: var(--color-surface-white);
+  border-color: var(--color-border);
+  outline: none;
+}
+
+.designer-title-input:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.studio-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.studio-header-right .btn {
+  height: 32px;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#btn-toggle-sidebar {
+  cursor: pointer;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+#btn-toggle-sidebar:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+}
+
+#btn-toggle-sidebar .sidebar-toggle-icon {
+  font-weight: 600;
+  color: var(--panel-accent, var(--color-accent));
+}
+
+#btn-toggle-sidebar.active {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+#btn-toggle-sidebar:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Row 2: Workspace Body */
+.studio-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.studio-main-section,
+.designer-main-canvas {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 20px 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --------------------------------------------------------------------------
+   3. File Details (Header Information) Table Card (Matching User Reference Image)
+   -------------------------------------------------------------------------- */
+
+.file-details-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: 0 !important;
+  padding: 0;
+  overflow: visible;
+  box-shadow: var(--shadow-xs);
+  margin-bottom: var(--space-8, 32px);
+}
+
+.file-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 16px;
+  height: 40px;
+  min-height: 40px;
+  background: var(--color-surface-white);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 !important;
+  margin-bottom: 0;
+}
+
+.file-details-heading {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-details-actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+  border-radius: 0 !important;
+}
+
+.btn-file-auto-balance {
+  background: transparent;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-file-auto-balance:hover {
+  color: var(--color-text-primary);
+  background: rgba(31, 29, 26, 0.035);
+}
+
+.btn-file-auto-balance:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.btn-file-auto-balance svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.btn-file-toggle-mode {
+  background: transparent;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 40px;
+  width: 82px;
+  box-sizing: border-box;
+  padding: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-file-toggle-mode:hover {
+  color: var(--color-text-primary);
+  background: rgba(31, 29, 26, 0.035);
+}
+
+.btn-file-toggle-mode.active,
+.btn-file-toggle-mode.is-edit-mode {
+  color: #FFFFFF;
+  background: var(--panel-accent, var(--color-accent));
+  font-weight: 600;
+}
+
+.btn-file-toggle-mode.active:hover {
+  background: var(--color-accent-hover, #854327);
+  color: #FFFFFF;
+}
+
+.btn-file-toggle-mode:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.btn-file-add-field {
+  background: transparent;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-file-add-field:hover {
+  color: var(--color-text-primary);
+  background: rgba(31, 29, 26, 0.035);
+}
+
+.btn-file-add-field:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.file-table-wrap {
+  border: none;
+  border-radius: 0 !important;
+  overflow: visible;
+  position: relative;
+  background: var(--color-surface-white);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.file-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: none;
+  border-radius: 0 !important;
+  background: var(--color-surface-white);
+}
+
+.file-details-table col {
+  transition: width 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.file-details-table tr {
+  height: 38px;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 !important;
+  transition: height 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.file-details-table tr:last-child {
+  border-bottom: none;
+}
+
+.file-details-table tr.grid-row-entering {
+  height: 0px;
+  overflow: hidden;
+}
+
+.file-details-table tr.grid-row-collapsing {
+  height: 0px !important;
+  overflow: hidden !important;
+  border-bottom-color: transparent !important;
+}
+
+.file-details-table td.td-cell {
+  padding: 0 !important;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 !important;
+  vertical-align: stretch;
+  position: relative;
+  transition: width 260ms cubic-bezier(0.16, 1, 0.3, 1), background var(--transition-fast), border-color var(--transition-fast);
+  background: var(--color-surface-white);
+  box-sizing: border-box;
+}
+
+.file-details-table tr.grid-row-collapsing td.td-cell {
+  border-bottom-color: transparent !important;
+  border-right-color: transparent !important;
+  padding: 0 !important;
+}
+
+/* ==========================================================================
+   Smooth Growth & Contraction Animations for Mini-Excel Grid (Task 1)
+   ========================================================================== */
+
+@keyframes gridRowExpand {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes cellInnerExpand {
+  0% {
+    max-height: 0px;
+    min-height: 0px;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  100% {
+    max-height: 38px;
+    min-height: 38px;
+    opacity: 1;
+  }
+}
+
+.file-details-table tr.grid-row-entering {
+  animation: gridRowExpand 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+}
+
+.file-details-table tr.grid-row-entering .file-combo-cell,
+.file-details-table tr.grid-row-entering .file-empty-slot {
+  animation: cellInnerExpand 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden !important;
+}
+
+@keyframes gridRowCollapse {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes cellInnerCollapse {
+  0% {
+    max-height: 38px;
+    min-height: 38px;
+    opacity: 1;
+  }
+  100% {
+    max-height: 0px;
+    min-height: 0px;
+    opacity: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.file-details-table tr.grid-row-collapsing {
+  animation: gridRowCollapse 210ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.file-details-table tr.grid-row-collapsing td.td-cell {
+  border-bottom-color: transparent !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.file-details-table tr.grid-row-collapsing .file-combo-cell,
+.file-details-table tr.grid-row-collapsing .file-empty-slot {
+  animation: cellInnerCollapse 210ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden !important;
+}
+
+/* Column Growth & Contraction Animations */
+@keyframes colCellExpand {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.file-details-table td.td-col-entering {
+  animation: colCellExpand 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+.file-details-table td.td-col-entering .file-combo-cell,
+.file-details-table td.td-col-entering .file-empty-slot {
+  animation: colCellExpand 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+@keyframes colCellCollapse {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0.1);
+    border-color: transparent !important;
+  }
+}
+
+.file-details-table td.td-col-collapsing {
+  animation: colCellCollapse 210ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left center;
+  overflow: hidden !important;
+  pointer-events: none;
+  border-right-color: transparent !important;
+  padding: 0 !important;
+}
+
+.file-details-table td.td-col-collapsing .file-combo-cell,
+.file-details-table td.td-col-collapsing .file-empty-slot {
+  animation: colCellCollapse 210ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden !important;
+}
+
+.file-details-table tr:last-child td.td-cell {
+  border-bottom: none;
+}
+
+.file-details-table td.td-cell:last-child {
+  border-right: none;
+}
+
+/* Sharp Corners: Complete Elimination of Border Radii in File Details */
+.file-details-card,
+.file-details-header,
+.file-details-actions,
+.btn-file-auto-balance,
+.btn-file-add-field,
+.btn-file-toggle-mode,
+.file-table-wrap,
+.file-details-table,
+.file-details-table tr,
+.file-details-table td.td-cell,
+.file-combo-cell,
+.file-empty-slot,
+.combo-key-box,
+.combo-key-input,
+.combo-val-box,
+.combo-val-input,
+.btn-slot-add-field,
+.btn-cell-options {
+  border-radius: 0 !important;
+}
+
+/* Empty / Uninitialized Grid Slot (Subtle desaturated dimmed disabled appearance) */
+.td-empty-slot {
+  background: #F3EFE9;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(122, 115, 107, 0.04) 8px,
+    rgba(122, 115, 107, 0.04) 9px
+  );
+  cursor: pointer;
+}
+
+.td-empty-slot:hover {
+  background-color: #EBE5DC;
+}
+
+.file-empty-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 !important;
+}
+
+.btn-slot-add-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.file-empty-slot:hover .btn-slot-add-field,
+.btn-slot-add-field:focus-visible {
+  opacity: 1;
+  background: rgba(31, 29, 26, 0.035);
+  color: var(--panel-accent, var(--color-accent));
+}
+
+.btn-slot-add-field svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Populated Combo Cell (Redone cleanly as a unified surface) */
+.file-combo-cell {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  min-height: 38px;
+  background: var(--color-surface-white);
+  position: relative;
+  border-radius: 0 !important;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.file-combo-cell.is-dragging {
+  opacity: 0.35;
+  background: var(--color-surface-hover) !important;
+  filter: grayscale(0.4);
+}
+
+/* Dynamic Live Drag Placeholder Slot (The vacancy that moves in real-time) */
+.file-details-table td.td-cell.is-drag-placeholder,
+.file-details-table td.td-cell.grid-drop-target {
+  background: var(--color-accent-light, #F5EAE4) !important;
+  position: relative;
+  z-index: 15;
+}
+
+.file-details-table td.td-cell.is-drag-placeholder::after,
+.file-details-table td.td-cell.grid-drop-target::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  border: 2px dashed var(--panel-accent, #9E5334);
+  pointer-events: none;
+  z-index: 20;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+}
+
+.file-details-table td.td-cell.is-drag-placeholder > .file-empty-slot,
+.file-details-table td.td-cell.grid-drop-target > .file-empty-slot {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.file-details-table td.td-cell.is-drag-placeholder > .file-combo-cell.is-dragging,
+.file-details-table td.td-cell.grid-drop-target > .file-combo-cell.is-dragging {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Key (Name) Segment */
+.combo-key-box {
+  width: 36%;
+  min-width: 75px;
+  max-width: 150px;
+  height: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  background: rgba(31, 29, 26, 0.03);
+  border-right: 1px solid var(--color-border);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-radius: 0 !important;
+  transition: background var(--transition-fast);
+}
+
+.combo-key-input {
+  width: 100%;
+  height: 100%;
+  min-height: 38px;
+  border: none;
+  background: transparent !important;
+  padding: 6px 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  outline: none;
+  box-sizing: border-box;
+  user-select: text;
+  border-radius: 0 !important;
+}
+
+.combo-key-input:focus {
+  outline: none;
+  background: transparent !important;
+}
+
+/* Value Segment - Transparent Surface, Unifies with Cell Fill */
+.combo-val-box {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  background: transparent !important;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  transition: background var(--transition-fast);
+}
+
+.combo-val-input {
+  width: 100%;
+  height: 100%;
+  min-height: 38px;
+  border: none;
+  background: transparent !important;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  outline: none;
+  box-sizing: border-box;
+  user-select: text;
+  border-radius: 0 !important;
+}
+
+.combo-val-input:focus {
+  outline: none;
+  background: transparent !important;
+}
+
+.combo-val-input::placeholder,
+.combo-key-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.combo-val-input:focus::placeholder,
+.combo-key-input:focus::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Actions Segment */
+.combo-actions {
+  width: 38px;
+  min-width: 38px;
+  aspect-ratio: 1 / 1;
+  align-self: stretch;
+  height: 100%;
+  min-height: 38px;
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-cell-options {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 0 !important;
+  transition: opacity var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.file-combo-cell:hover .btn-cell-options,
+.btn-cell-options:focus-visible {
+  opacity: 0.75;
+  pointer-events: auto;
+  color: var(--color-text-primary);
+}
+
+.btn-cell-options:focus-visible {
+  outline: 2px solid var(--panel-accent, var(--color-accent));
+  outline-offset: -2px;
+}
+
+.btn-cell-options:hover {
+  opacity: 1;
+  background: rgba(31, 29, 26, 0.06);
+  color: var(--color-text-primary);
+}
+
+/* Normal Mode: Cell Hover, Selection, and Input Guard (Subtle, Refined Aesthetics) */
+.file-details-table.mode-normal td.td-cell:hover {
+  position: relative;
+  z-index: 5;
+  background: rgba(31, 29, 26, 0.02);
+  border-top-color: rgba(158, 83, 52, 0.45);
+  border-bottom-color: rgba(158, 83, 52, 0.45);
+}
+
+.file-details-table.mode-normal .file-combo-cell:hover,
+.file-details-table.mode-normal .file-empty-slot:hover {
+  cursor: pointer;
+}
+
+.file-details-table.mode-normal .file-combo-cell:hover::after,
+.file-details-table.mode-normal .file-empty-slot:hover::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(158, 83, 52, 0.5);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 0 !important;
+}
+
+/* Selected State: Uniform Color Fill Across Entire Cell */
+.file-details-table.mode-normal .td-cell.is-selected,
+.file-details-table.mode-normal td.td-cell.is-selected {
+  position: relative;
+  z-index: 6;
+  background: rgba(158, 83, 52, 0.08) !important;
+  border-top-color: rgba(158, 83, 52, 0.8);
+  border-bottom-color: rgba(158, 83, 52, 0.8);
+}
+
+.file-details-table.mode-normal .td-cell.is-selected .file-combo-cell,
+.file-details-table.mode-normal .td-cell.is-selected .file-empty-slot,
+.file-details-table.mode-normal td.td-cell.is-selected .file-combo-cell,
+.file-details-table.mode-normal td.td-cell.is-selected .file-empty-slot {
+  background: rgba(158, 83, 52, 0.08) !important;
+}
+
+.file-details-table.mode-normal .td-cell.is-selected .combo-key-box,
+.file-details-table.mode-normal td.td-cell.is-selected .combo-key-box {
+  background: rgba(158, 83, 52, 0.04) !important;
+}
+
+.file-details-table.mode-normal .td-cell.is-selected .combo-val-box,
+.file-details-table.mode-normal .td-cell.is-selected .combo-val-input,
+.file-details-table.mode-normal .td-cell.is-selected .combo-key-input,
+.file-details-table.mode-normal .td-cell.is-selected .combo-actions,
+.file-details-table.mode-normal td.td-cell.is-selected .combo-val-box,
+.file-details-table.mode-normal td.td-cell.is-selected .combo-val-input,
+.file-details-table.mode-normal td.td-cell.is-selected .combo-key-input,
+.file-details-table.mode-normal td.td-cell.is-selected .combo-actions {
+  background: transparent !important;
+}
+
+.file-details-table.mode-normal .td-cell.is-selected .file-combo-cell::after,
+.file-details-table.mode-normal .td-cell.is-selected .file-empty-slot::after,
+.file-details-table.mode-normal td.td-cell.is-selected .file-combo-cell::after,
+.file-details-table.mode-normal td.td-cell.is-selected .file-empty-slot::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid var(--panel-accent, #9E5334);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 0 !important;
+}
+
+.file-details-table.mode-normal .combo-key-input,
+.file-details-table.mode-normal .combo-val-input {
+  pointer-events: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Edit Mode: Input Fields Active & Editable */
+.file-details-table.mode-edit .combo-key-input,
+.file-details-table.mode-edit .combo-val-input {
+  pointer-events: auto;
+  cursor: text;
+  user-select: text;
+}
+
+.file-details-table.mode-edit .combo-key-box:hover,
+.file-details-table.mode-edit .combo-val-box:hover {
+  background: rgba(31, 29, 26, 0.025);
+}
+
+.file-details-table.mode-edit td.td-cell:focus-within {
+  position: relative;
+  z-index: 5;
+  background: var(--color-surface-white);
+  border-top-color: var(--panel-accent, #9E5334);
+  border-bottom-color: var(--panel-accent, #9E5334);
+}
+
+.file-details-table.mode-edit .file-combo-cell:focus-within::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid var(--panel-accent, #9E5334);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 0 !important;
+}
+
+/* Proximity Divider Overlay Lines & (+) Badges */
+.grid-proximity-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.grid-divider-line {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 25;
+}
+
+.grid-divider-line.h-line {
+  height: 1px;
+  background: var(--panel-accent, #9E5334);
+  margin-top: -0.5px;
+}
+
+.grid-divider-line.v-line {
+  width: 1px;
+  background: var(--panel-accent, #9E5334);
+  margin-left: -0.5px;
+}
+
+.grid-insert-btn {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--panel-accent, #9E5334);
+  color: #FFFFFF;
+  border: 2px solid var(--color-surface-white);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  transition: box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.grid-insert-btn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
+.grid-insert-btn svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.grid-insert-btn:hover {
+  background: var(--panel-accent, #9E5334);
+  box-shadow: 0 0 0 2px var(--color-surface-white), 0 0 0 4px var(--panel-accent, #9E5334);
+}
+
+/* Horizontal line: (+) button at the left head */
+.grid-insert-btn.h-badge {
+  left: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.grid-insert-btn.h-badge:hover {
+  transform: translateY(-50%);
+}
+
+/* Vertical line: (+) button at the top head */
+.grid-insert-btn.v-badge {
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.grid-insert-btn.v-badge:hover {
+  transform: translateX(-50%);
+}
+
+/* ==========================================================================
+   End-Cap Delete Badges for Rows and Columns (Section 2.1 & Master Style Rulebook)
+   ========================================================================== */
+
+.grid-delete-row-btn {
+  position: absolute;
+  left: 100%;
+  margin-left: -1px;
+  top: 0;
+  height: 100%;
+  width: 28px;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  background: linear-gradient(to right, rgba(150, 47, 47, 0.16), rgba(150, 47, 47, 0.02));
+  border: 1.5px dashed var(--color-danger, #962F2F);
+  color: var(--color-danger, #962F2F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  z-index: 20;
+}
+
+.grid-delete-row-btn svg,
+.grid-delete-col-btn svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  stroke: var(--color-danger, #962F2F);
+  transition: transform var(--transition-fast);
+}
+
+.grid-delete-row-btn:hover svg,
+.grid-delete-col-btn:hover svg {
+  transform: scale(1.15);
+}
+
+.grid-delete-col-btn {
+  position: absolute;
+  top: 100%;
+  margin-top: -1px;
+  left: 0;
+  width: 100%;
+  height: 26px;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  background: linear-gradient(to bottom, rgba(150, 47, 47, 0.16), rgba(150, 47, 47, 0.02));
+  border: 1.5px dashed var(--color-danger, #962F2F);
+  color: var(--color-danger, #962F2F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  z-index: 20;
+}
+
+/* Visibility triggers on hover */
+.file-details-table tr:hover .grid-delete-row-btn,
+.grid-delete-row-btn.is-hovered,
+.grid-delete-row-btn:hover {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.file-details-table:has(td[data-col="0"]:hover) .grid-delete-col-btn[data-col="0"],
+.file-details-table:has(td[data-col="1"]:hover) .grid-delete-col-btn[data-col="1"],
+.file-details-table:has(td[data-col="2"]:hover) .grid-delete-col-btn[data-col="2"],
+.file-details-table:has(td[data-col="3"]:hover) .grid-delete-col-btn[data-col="3"],
+.file-details-table:has(td[data-col="4"]:hover) .grid-delete-col-btn[data-col="4"],
+.grid-delete-col-btn.is-hovered,
+.grid-delete-col-btn:hover {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Button hover & active states */
+.grid-delete-row-btn:hover {
+  background: linear-gradient(to right, rgba(150, 47, 47, 0.30), rgba(150, 47, 47, 0.08));
+  border-color: var(--color-danger, #962F2F);
+}
+
+.grid-delete-col-btn:hover {
+  background: linear-gradient(to bottom, rgba(150, 47, 47, 0.30), rgba(150, 47, 47, 0.08));
+  border-color: var(--color-danger, #962F2F);
+}
+
+.grid-delete-row-btn:active {
+  background: linear-gradient(to right, rgba(150, 47, 47, 0.42), rgba(150, 47, 47, 0.16));
+}
+
+.grid-delete-col-btn:active {
+  background: linear-gradient(to bottom, rgba(150, 47, 47, 0.42), rgba(150, 47, 47, 0.16));
+}
+
+.grid-delete-row-btn:focus-visible,
+.grid-delete-col-btn:focus-visible {
+  outline: 2px solid var(--color-danger, #962F2F);
+  outline-offset: 1px;
+}
+
+/* ==========================================================================
+   Row & Column Delete Preview Highlighting (Unified Surface & Zero Segmentation)
+   ========================================================================== */
+
+/* 1. Seamless subtle background tint across all cells in target row/column */
+.file-details-table tr.is-row-delete-hover td.td-cell,
+.file-details-table tr.is-delete-hover td.td-cell,
+.file-details-table tr:has(.grid-delete-row-btn:hover) td.td-cell,
+.file-details-table td.td-cell.is-col-delete-hover,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"],
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"],
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"],
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"],
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] {
+  background-color: rgba(150, 47, 47, 0.04) !important;
+  background-image: none !important;
+}
+
+/* 2. Make all inner containers transparent to guarantee identical color across empty and filled cells */
+.file-details-table tr.is-row-delete-hover .file-combo-cell,
+.file-details-table tr.is-row-delete-hover .file-empty-slot,
+.file-details-table tr.is-row-delete-hover .combo-key-box,
+.file-details-table tr.is-row-delete-hover .combo-val-box,
+.file-details-table tr.is-delete-hover .file-combo-cell,
+.file-details-table tr.is-delete-hover .file-empty-slot,
+.file-details-table tr.is-delete-hover .combo-key-box,
+.file-details-table tr.is-delete-hover .combo-val-box,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .file-combo-cell,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .file-empty-slot,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .combo-key-box,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .combo-val-box,
+.file-details-table td.td-cell.is-col-delete-hover .file-combo-cell,
+.file-details-table td.td-cell.is-col-delete-hover .file-empty-slot,
+.file-details-table td.td-cell.is-col-delete-hover .combo-key-box,
+.file-details-table td.td-cell.is-col-delete-hover .combo-val-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"] .file-combo-cell,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"] .file-empty-slot,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"] .combo-key-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"] .combo-val-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"] .file-combo-cell,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"] .file-empty-slot,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"] .combo-key-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"] .combo-val-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"] .file-combo-cell,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"] .file-empty-slot,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"] .combo-key-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"] .combo-val-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"] .file-combo-cell,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"] .file-empty-slot,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"] .combo-key-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"] .combo-val-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] .file-combo-cell,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] .file-empty-slot,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] .combo-key-box,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] .combo-val-box {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* 3. Soften internal vertical borders during row delete hover to eliminate segmentation */
+.file-details-table tr.is-row-delete-hover td.td-cell,
+.file-details-table tr.is-delete-hover td.td-cell,
+.file-details-table tr:has(.grid-delete-row-btn:hover) td.td-cell {
+  border-right-color: rgba(150, 47, 47, 0.12) !important;
+}
+.file-details-table tr.is-row-delete-hover .combo-key-box,
+.file-details-table tr.is-delete-hover .combo-key-box,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .combo-key-box {
+  border-right-color: rgba(150, 47, 47, 0.08) !important;
+}
+
+/* 4. Soften internal horizontal borders during column delete hover */
+.file-details-table td.td-cell.is-col-delete-hover,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"],
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"],
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"],
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"],
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"] {
+  border-bottom-color: rgba(150, 47, 47, 0.12) !important;
+}
+
+/* 5. Continuous red outline overlay for Row Delete Preview */
+.file-details-table tr.is-row-delete-hover td.td-cell::before,
+.file-details-table tr.is-delete-hover td.td-cell::before,
+.file-details-table tr:has(.grid-delete-row-btn:hover) td.td-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0 -0.5px;
+  background: rgba(150, 47, 47, 0.035);
+  border-top: 1.5px solid var(--color-danger, #962F2F);
+  border-bottom: 1.5px solid var(--color-danger, #962F2F);
+  border-left: none !important;
+  border-right: none !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.file-details-table tr.is-row-delete-hover td.td-cell:first-child::before,
+.file-details-table tr.is-delete-hover td.td-cell:first-child::before,
+.file-details-table tr:has(.grid-delete-row-btn:hover) td.td-cell:first-child::before {
+  border-left: 1.5px solid var(--color-danger, #962F2F) !important;
+  left: 0;
+}
+
+.file-details-table tr.is-row-delete-hover td.td-cell:last-child::before,
+.file-details-table tr.is-delete-hover td.td-cell:last-child::before,
+.file-details-table tr:has(.grid-delete-row-btn:hover) td.td-cell:last-child::before {
+  border-right: 1.5px solid var(--color-danger, #962F2F) !important;
+  right: 0;
+}
+
+/* 6. Continuous red outline overlay for Column Delete Preview */
+.file-details-table td.td-cell.is-col-delete-hover::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) td[data-col="0"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) td[data-col="1"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) td[data-col="2"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) td[data-col="3"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) td[data-col="4"]::before {
+  content: "";
+  position: absolute;
+  inset: -0.5px 0;
+  background: rgba(150, 47, 47, 0.035);
+  border-left: 1.5px solid var(--color-danger, #962F2F);
+  border-right: 1.5px solid var(--color-danger, #962F2F);
+  border-top: none !important;
+  border-bottom: none !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.file-details-table tbody tr:first-child td.td-cell.is-col-delete-hover::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) tbody tr:first-child td[data-col="0"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) tbody tr:first-child td[data-col="1"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) tbody tr:first-child td[data-col="2"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) tbody tr:first-child td[data-col="3"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) tbody tr:first-child td[data-col="4"]::before {
+  border-top: 1.5px solid var(--color-danger, #962F2F) !important;
+  top: 0;
+}
+
+.file-details-table tbody tr:last-child td.td-cell.is-col-delete-hover::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="0"]:hover) tbody tr:last-child td[data-col="0"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="1"]:hover) tbody tr:last-child td[data-col="1"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="2"]:hover) tbody tr:last-child td[data-col="2"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="3"]:hover) tbody tr:last-child td[data-col="3"]::before,
+.file-details-table:has(.grid-delete-col-btn[data-col="4"]:hover) tbody tr:last-child td[data-col="4"]::before {
+  border-bottom: 1.5px solid var(--color-danger, #962F2F) !important;
+  bottom: 0;
+}
+
+/* 7. Hide Add Field button during delete hover to eliminate visual clutter */
+.file-details-table tr.is-delete-hover .btn-slot-add-field,
+.file-details-table tr:has(.grid-delete-row-btn:hover) .btn-slot-add-field,
+.file-details-table td.td-cell.is-delete-hover .btn-slot-add-field {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide delete buttons during drag or edit mode */
+.file-table-wrap.is-dragging-active .grid-delete-row-btn,
+.file-table-wrap.is-dragging-active .grid-delete-col-btn,
+body.is-dragging-active .grid-delete-row-btn,
+body.is-dragging-active .grid-delete-col-btn,
+.file-details-table.mode-edit .grid-delete-row-btn,
+.file-details-table.mode-edit .grid-delete-col-btn {
+  display: none !important;
+}
+
+/* Cell Context Menu (Compact, Row-Grouped Design) */
+.cell-context-menu {
+  position: absolute;
+  z-index: 100;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  width: 236px;
+  min-width: 220px;
+  max-width: 260px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cell-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  min-height: 28px;
+  transition: background var(--transition-fast);
+}
+
+.cell-menu-row:hover {
+  background: rgba(31, 29, 26, 0.03);
+}
+
+.cell-menu-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.cell-menu-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  background: var(--color-surface-white);
+}
+
+.cell-menu-action {
+  width: 52px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.cell-menu-action + .cell-menu-action {
+  border-left: 1px solid var(--color-border-subtle);
+}
+
+.cell-menu-actions > .cell-menu-action:only-child {
+  width: 104px;
+}
+
+.cell-menu-action:hover {
+  background: rgba(31, 29, 26, 0.05);
+  color: var(--color-text-primary);
+}
+
+.cell-menu-action:active {
+  background: rgba(31, 29, 26, 0.08);
+}
+
+.cell-menu-action:focus-visible {
+  outline: 2px solid var(--panel-accent, var(--color-accent));
+  outline-offset: -1px;
+}
+
+.cell-menu-action.danger {
+  color: var(--color-danger);
+}
+
+.cell-menu-action.danger:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.cell-menu-action:disabled,
+.cell-menu-action.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.cell-menu-divider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  margin: 3px 0;
+}
+
+/* Backward compatibility fallback */
+.cell-menu-item {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: transparent;
+  width: 100%;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.cell-menu-item:hover {
+  background: rgba(31, 29, 26, 0.035);
+}
+
+.cell-menu-item.danger {
+  color: var(--color-danger);
+}
+
+.cell-menu-item.danger:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+/* --------------------------------------------------------------------------
+   4. Top Formula Bar [fx] (Clean Layout Matching User Reference Image)
+   -------------------------------------------------------------------------- */
+
+.formula-bar-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.formula-bar {
+  width: calc(100% - 155px);
+  margin-left: 155px;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: stretch;
+  min-height: 38px;
+  height: 38px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.formula-bar:focus-within {
+  border-color: var(--panel-accent);
+  box-shadow: 0 0 0 2px rgba(120, 97, 138, 0.15);
+}
+
+.formula-prefix {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: rgba(239, 236, 230, 0.5);
+  border-right: 1px solid var(--color-border);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.formula-fx-symbol {
+  font-family: serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.formula-target-token {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.formula-target-token.active-token {
+  font-weight: 700;
+  font-style: normal;
+  color: var(--panel-accent);
+}
+
+.formula-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  padding: 0 14px;
+  height: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.formula-input:focus {
+  background: transparent;
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Integrated Spreadsheet Table Canvas with Decoupled Token Column
+   (Strictly aligned with Section 4.5 of Crew Platform Architecture Spec)
+   -------------------------------------------------------------------------- */
+
+.designer-table-wrap {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.sheet-table-integrated {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  table-layout: fixed;
+}
+
+/* Decoupled Token Column: Completely transparent, NO borders, sitting outside the table */
+.sheet-table-integrated th.col-token,
+.sheet-table-integrated td.col-token,
+.sheet-table-integrated tr.section-row-header td.col-token,
+.sheet-table-integrated tr.subtotal-row td.col-token,
+.sheet-table-integrated tr.grandtotal-row td.col-token,
+.sheet-table-integrated tr.section-divider-row td.col-token,
+.sheet-table-integrated tr.section-actions-row td.col-token,
+.sheet-table-integrated tr.action-add-row td.col-token {
+  width: 155px;
+  min-width: 155px;
+  max-width: 155px;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  text-align: right;
+  vertical-align: middle;
+  font-family: var(--font-mono);
+}
+
+/* Table Headers */
+.sheet-table-integrated th.col-sl {
+  width: 44px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-top-left-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 10px 6px;
+}
+
+.sheet-table-integrated th.col-item {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-border);
+  border-right: 1px solid var(--color-border) !important;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.sheet-table-integrated th.col-type {
+  width: 115px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.sheet-table-integrated th.col-value {
+  width: 145px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 10px 14px;
+  text-align: right;
+}
+
+.sheet-table-integrated th.col-actions {
+  width: 40px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-top-right-radius: var(--radius-sm);
+  padding: 10px 6px;
+}
+
+/* Section Header Rail */
+.sheet-table-integrated tr.section-row-header td.col-section-title {
+  background: var(--color-surface);
+  border-top: 1.5px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  padding: 0 14px 0 0 !important;
+  vertical-align: stretch;
+  height: 100%;
+}
+
+.section-rail-bar {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  height: 100%;
+}
+
+.section-rail-left {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex: 1;
+  height: 100%;
+}
+
+.section-color-strip {
+  width: 4px;
+  min-height: 100%;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.strip-green {
+  background: #235F42;
+}
+
+.strip-blue {
+  background: #355C7D;
+}
+
+.strip-orange {
+  background: #9E5334;
+}
+
+.strip-purple {
+  background: #78618A;
+}
+
+.section-title-input {
+  background: transparent;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
+  border-radius: 0;
+  transition: all var(--transition-fast);
+  color: var(--color-text-primary);
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 40px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.section-title-input.title-green {
+  color: #235F42;
+}
+
+.section-title-input.title-blue {
+  color: #355C7D;
+}
+
+.section-title-input.title-orange {
+  color: #9E5334;
+}
+
+.section-title-input.title-purple {
+  color: #78618A;
+}
+
+.section-title-input:hover {
+  background: rgba(247, 244, 240, 0.7);
+  border-color: var(--color-border);
+}
+
+.section-title-input:focus {
+  background: var(--color-surface-white);
+  border-color: var(--panel-accent);
+  box-shadow: inset 0 0 0 1px var(--panel-accent);
+  outline: none;
+}
+
+.section-rail-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-inline-section-action {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-inline-section-action:hover {
+  border-color: var(--panel-accent);
+  color: var(--panel-accent);
+  background: var(--panel-accent-light);
+}
+
+/* Line Item Rows */
+.sheet-table-integrated tr.sheet-row {
+  height: 42px;
+}
+
+.sheet-row td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.sheet-row td.col-sl {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface-white);
+}
+
+.sheet-row td.col-item {
+  border-right: 1px solid var(--color-border) !important;
+  background: var(--color-surface-white);
+  padding: 0 !important;
+  vertical-align: stretch;
+  height: 100%;
+}
+
+.item-name-wrap {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: 100%;
+  min-height: 42px;
+  width: 100%;
+}
+
+.row-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  min-width: 28px;
+  cursor: grab;
+  color: var(--color-text-muted);
+  user-select: none;
+  font-size: 14px;
+  padding: 0;
+  border-right: 1px solid transparent;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.row-drag-handle:hover {
+  color: var(--panel-accent);
+  background: var(--panel-accent-light);
+}
+
+.row-drag-handle:active {
+  cursor: grabbing;
+}
+
+.row-name-input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-radius: 0;
+  display: block;
+  transition: all var(--transition-fast);
+}
+
+.row-name-input:hover {
+  background: rgba(247, 244, 240, 0.7);
+  border-color: var(--color-border);
+}
+
+.row-name-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.row-name-input:focus {
+  background: var(--color-surface-white);
+  border-color: var(--panel-accent);
+  box-shadow: inset 0 0 0 1px var(--panel-accent);
+  outline: none;
+}
+
+.row-name-input:focus::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+/* Type Toggle Button (EDITABLE vs NOT EDITABLE) - Seamless full cell */
+.sheet-row td.col-type,
+.section-charge-row td.col-type {
+  text-align: center;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface-white);
+  padding: 0 !important;
+  vertical-align: stretch;
+  height: 100%;
+}
+
+.btn-type-toggle {
+  width: 100%;
+  height: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.btn-type-toggle.type-editable {
+  background: transparent;
+  color: #235F42;
+  border: none;
+}
+
+.btn-type-toggle.type-editable:hover {
+  background: rgba(35, 95, 66, 0.08);
+  box-shadow: none;
+}
+
+.btn-type-toggle.type-fixed {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: none;
+}
+
+.btn-type-toggle.type-fixed:hover {
+  background: rgba(239, 236, 230, 0.6);
+  color: var(--color-text-primary);
+  box-shadow: none;
+}
+
+/* Value Cell */
+.sheet-row td.col-value {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface-white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sheet-row:hover td.col-sl,
+.sheet-row:hover td.col-item,
+.sheet-row:hover td.col-type,
+.sheet-row:hover td.col-value,
+.sheet-row:hover td.col-actions {
+  background: rgba(239, 236, 230, 0.4);
+}
+
+.sheet-row.row-selected td.col-sl,
+.sheet-row.row-selected td.col-item,
+.sheet-row.row-selected td.col-type,
+.sheet-row.row-selected td.col-value,
+.sheet-row.row-selected td.col-actions {
+  background: var(--panel-accent-light) !important;
+}
+
+.sheet-row td.col-value.cell-selected {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: -2px;
+  background: var(--panel-accent-light) !important;
+}
+
+.val-cell-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.val-eq {
+  font-size: 11px;
+  color: var(--panel-accent);
+  font-weight: normal;
+  background: var(--panel-accent-light);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+/* Actions Cell */
+.sheet-row td.col-actions {
+  text-align: center;
+  background: var(--color-surface-white);
+  padding: 4px;
+  border-right: 1px solid var(--color-border);
+}
+
+.row-delete-btn,
+.charge-delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.row-delete-btn:hover,
+.charge-delete-btn:hover {
+  color: var(--color-danger);
+  background: rgba(184, 50, 50, 0.1);
+}
+
+/* Token Badges: Sharp rectangular, no roundedness, zero margin on right */
+.badge-token {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 0 !important;
+  margin-right: 0 !important;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  transition: all var(--transition-fast);
+}
+
+.badge-row {
+  background: rgba(120, 97, 138, 0.12);
+  color: #78618A;
+  border: 1px solid rgba(120, 97, 138, 0.3);
+  border-right: none !important;
+  cursor: pointer;
+}
+
+.badge-row:hover {
+  background: rgba(120, 97, 138, 0.22);
+  border-color: #78618A;
+}
+
+.badge-local {
+  background: rgba(53, 92, 125, 0.12);
+  color: #355C7D;
+  border: 1px solid rgba(53, 92, 125, 0.3);
+  border-right: none !important;
+}
+
+.badge-global {
+  background: rgba(35, 95, 66, 0.12);
+  color: #235F42;
+  border: 1px solid rgba(35, 95, 66, 0.3);
+  border-right: none !important;
+}
+
+/* Section Charges (VAT, Surcharges) */
+.section-charge-row td {
+  background: rgba(239, 236, 230, 0.3);
+  padding: 7px 12px;
+  font-size: 12.5px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-charge-row td.col-sl {
+  background: rgba(239, 236, 230, 0.3);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.section-charge-row td.col-item {
+  border-right: 1px solid var(--color-border) !important;
+}
+
+.section-charge-row td.col-type {
+  border-right: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.section-charge-row td.col-value {
+  border-right: 1px solid var(--color-border);
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.section-charge-row td.col-value.cell-selected {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: -2px;
+}
+
+.section-charge-row td.col-actions {
+  border-right: 1px solid var(--color-border);
+}
+
+/* Subtotal Row */
+.subtotal-row td {
+  background: var(--color-surface);
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 1.5px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+}
+
+.subtotal-row td.col-subtotal-label {
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  padding: 9px 18px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  text-align: left;
+}
+
+.subtotal-row td.col-sl {
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.subtotal-row td.col-item {
+  border-right: 1px solid var(--color-border) !important;
+  color: var(--color-text-primary);
+}
+
+.subtotal-row td.col-type {
+  border-right: 1px solid var(--color-border);
+}
+
+.subtotal-row td.col-value {
+  border-right: 1px solid var(--color-border);
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--panel-accent);
+}
+
+.subtotal-row td.col-value.cell-selected {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: -2px;
+}
+
+.subtotal-row td.col-actions {
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Action Rows (+ Add section here, + Add row, + Add section charge)
+   Matching User Reference Image
+   -------------------------------------------------------------------------- */
+
+/* Section Divider Rows (+ Add section here) */
+.section-divider-row td.col-divider-cell {
+  padding: 8px 0;
+  text-align: center;
+  background: var(--color-surface-white);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.btn-add-section-here,
+.btn-action-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px auto;
+  padding: 4px 18px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  line-height: 1.4;
+  user-select: none;
+}
+
+.btn-add-section-here:hover,
+.btn-action-add:hover {
+  border-color: var(--panel-accent);
+  color: var(--panel-accent);
+  background: var(--panel-accent-light);
+  box-shadow: 0 1px 4px rgba(120, 97, 138, 0.12);
+}
+
+/* Section Actions Row (2 Columns: SL+Name on left, Type+Value+Actions on right with border in between) */
+.section-actions-row td.col-add-row-cell {
+  padding: 6px 12px;
+  background: var(--color-surface-white);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.section-actions-row td.col-add-charge-cell {
+  padding: 6px 12px;
+  background: var(--color-surface-white);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.section-actions-row td.col-actions-bar {
+  padding: 0;
+  background: var(--color-surface-white);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.section-bottom-actions-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 36px;
+  min-height: 38px;
+}
+
+.section-drop-target.drop-target-active td {
+  background: var(--panel-accent-light) !important;
+  border: 1.5px dashed var(--panel-accent) !important;
+}
+
+/* Grand Total Row */
+.grandtotal-row td {
+  padding: 12px 14px;
+  background: var(--color-surface);
+  border-top: 2.5px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.grandtotal-row td.col-sl {
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.grandtotal-row td.col-item {
+  border-right: 1px solid var(--color-border) !important;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+}
+
+.grandtotal-row td.col-type {
+  border-right: 1px solid var(--color-border);
+}
+
+.grandtotal-row td.col-value {
+  border-right: 1px solid var(--color-border);
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--panel-accent);
+}
+
+.grandtotal-row td.col-actions {
+  border-right: 1px solid var(--color-border);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.grandtotal-row td.col-value.cell-selected {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: -2px;
+}
+
+/* Decoupled Token Cell Hover / Selected Protection */
+.sheet-row:hover td.col-token,
+.section-charge-row:hover td.col-token,
+.subtotal-row:hover td.col-token,
+.grandtotal-row:hover td.col-token,
+.sheet-row.row-selected td.col-token,
+.section-charge-row.row-selected td.col-token,
+.subtotal-row.row-selected td.col-token,
+.grandtotal-row.row-selected td.col-token {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Retractable Docked Token Pool Sidebar
+   -------------------------------------------------------------------------- */
+
+.studio-sidebar.docked-token-pool,
+.docked-token-pool {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  background: var(--color-surface-white);
+  border-left: 1px solid var(--color-border);
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  position: static;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    min-width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    max-width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease;
+  opacity: 1;
+  visibility: visible;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.studio-sidebar.docked-token-pool.collapsed,
+.docked-token-pool.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  border-left-color: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.token-pool-header {
+  padding: 10px 14px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.token-pool-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-close-btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.sidebar-close-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.token-pool-tabs {
+  display: flex;
+  background: var(--color-bg);
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.token-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 4px 6px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.token-tab-btn.active {
+  background: var(--color-surface-white);
+  color: var(--panel-accent);
+  box-shadow: var(--shadow-xs);
+}
+
+.token-pool-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.token-group-card {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 12px;
+}
+
+.token-group-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.token-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.token-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.token-cat-pill {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(158, 83, 52, 0.1);
+  color: var(--color-accent);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.token-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.token-pill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.token-pill-item:hover {
+  background: var(--panel-accent-light);
+  border-color: rgba(120, 97, 138, 0.3);
+}
+
+.token-pill-name {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.token-pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--panel-accent);
+}
+
+.token-pill-val {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+}
+
+/* Sections Live Tree in Token Pool */
+.pool-section-block {
+  margin-bottom: 8px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  background: var(--color-bg);
+}
+
+.pool-sec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.pool-sec-total {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11.5px;
+  color: var(--panel-accent);
+}
+
+.pool-sec-subtoggles {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.pool-toggle-pill {
+  flex: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: var(--radius-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.pool-toggle-pill.active {
+  background: var(--color-surface-white);
+  color: var(--panel-accent);
+  border-color: var(--panel-accent);
+}
+
+.pool-tokens-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Catalog Shelf & Projects Shelf (Sidebar Tabs 2 & 3)
+   -------------------------------------------------------------------------- */
+
+.catalog-shelf-wrap,
+.files-shelf-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-items-list,
+.files-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.catalog-draggable-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  cursor: grab;
+  transition: all var(--transition-fast);
+}
+
+.catalog-draggable-card:hover {
+  background: var(--panel-accent-light);
+  border-color: var(--panel-accent);
+  box-shadow: var(--shadow-xs);
+}
+
+.catalog-draggable-card:active {
+  cursor: grabbing;
+}
+
+.catalog-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  margin-bottom: 4px;
+}
+
+.catalog-card-token {
+  font-weight: 700;
+  color: var(--panel-accent);
+}
+
+.catalog-card-price {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.catalog-card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.catalog-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.catalog-card-cat {
+  background: var(--color-surface);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.catalog-card-drag-hint {
+  color: var(--panel-accent);
+  font-weight: 600;
+}
+
+/* File Select Card */
+.file-select-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 12px;
+}
+
+.file-card-title {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.file-card-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.file-card-vessel {
+  background: var(--color-surface);
+  padding: 4px 6px;
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   8. Printable Invoice Modal Canvas
+   -------------------------------------------------------------------------- */
+
+.printable-invoice-canvas {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  color: var(--color-text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.invoice-modal-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #235F42;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.invoice-modal-details-grid {
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--color-bg);
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.invoice-modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.invoice-modal-table th {
+  padding: 8px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 700;
+  text-align: left;
+}
+
+.invoice-modal-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.invoice-sec-header-row td {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.invoice-modal-total-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #235F42;
+  border-top: 2px solid #235F42;
+  padding-top: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Behavior
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .designer-shell:not(.studio-shell) {
+    flex-direction: column;
+  }
+
+  .designer-shell:not(.studio-shell) .docked-token-pool {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    position: static;
+    max-height: 440px;
+  }
+
+  .file-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Studio responsive adaptations (< 768px) */
+  .studio-header {
+    padding: 0 10px 0 0;
+    gap: 8px;
+  }
+
+  .studio-header-left .designer-title-input {
+    max-width: 180px;
+    font-size: 13.5px;
+  }
+
+  .studio-header-right {
+    gap: 6px;
+  }
+
+  .studio-header-right .btn {
+    height: 36px;
+    padding: 0 8px;
+    font-size: 11.5px;
+  }
+
+  .studio-main-section {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .studio-sidebar.docked-token-pool {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 50;
+    box-shadow: var(--shadow-lg);
+    width: 300px;
+    min-width: 300px;
+    max-width: 85vw;
+  }
+
+  .studio-sidebar.docked-token-pool.collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .tpl-directory-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tpl-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .tpl-search-box {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .studio-header-left .designer-title-input {
+    max-width: 130px;
+    font-size: 13px;
+  }
+
+  .file-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .segmented-pills-track {
+    width: 100%;
+    display: flex;
+  }
+
+  .segmented-pill-btn {
+    flex: 1;
+    text-align: center;
+    padding: 7px 10px;
+    font-size: 12.5px;
+  }
+}
